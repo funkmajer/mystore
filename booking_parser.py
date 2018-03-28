@@ -36,7 +36,7 @@ def get_hotel_links(f):
     a_hotel=soup.find('div', id='hotellist_inner').find_all('h3', class_='sr-hotel__title')    #('a', class_="hotel_name_link url")
     hotel_links=[]
     for h3 in a_hotel:
-        b=soup.find('a', class_='hotel_name_link url').get('href')
+        b=h3.find('a', class_='hotel_name_link url').get('href')
         b=b.lstrip().rstrip('#hotelTmpl').rstrip()
         #b=b.lstrip().rstrip()
         #b=b.rstrip()
