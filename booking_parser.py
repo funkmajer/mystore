@@ -17,17 +17,28 @@ if month==['04','06','09','11']:
 
 site='https://www.booking.com'
 
-url='https://www.booking.com/searchresults.ru.html?;checkin_monthday=19&checkin_year_month='+date+'&checkout_monthday=20&checkout_year_month='+date+'&dest_id=253102&dest_type=landmark&from_history=1&group_adults=2&group_children=0&no_rooms=1&radius=10&si=ad&si=ai&si=ci&si=co&si=di&si=la&si=re&;sh_position=1'
+url='https://www.booking.com/searchresults.ru.html?;checkin_monthday=1&checkin_year_month=2018-04&checkout_monthday=3&checkout_year_month=2018-04&dest_id=253102&dest_type=landmark&from_history=1&group_adults=2&group_children=0&no_rooms=1&radius=10&si=ad&si=ai&si=ci&si=co&si=di&si=la&si=re&;sh_position=1'
 
-#a=urllib.urlopen('url')
-#a=a.read()
 
+
+#a=urllib.urlopen(url).read()
+#soup=BeautifulSoup(a)
 #print a
-
 
 f=open('1.txt', 'r')
 #f.write(a)
 #f.close()
+
+soup = BeautifulSoup(f)
+divs=soup.find('div', class_='results-paging')
+link=divs.find_all('a', class_='sr_pagination_link')[-1].get('href')
+list=link.split('=')
+nb=len(list)
+pages=int(list[nb-1])
+for i in range(0,pages+15,15):
+
+    print i
+
 
 
 
@@ -43,6 +54,6 @@ def get_hotel_links(f):
         link=site+b
         hotel_links.append(link)
 
-    print hotel_links
+    #print hotel_links
 
-get_hotel_links(f)
+#get_hotel_links(f)
